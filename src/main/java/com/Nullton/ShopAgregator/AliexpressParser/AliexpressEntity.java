@@ -1,6 +1,6 @@
 package com.Nullton.ShopAgregator.AliexpressParser;
 
-public class Entity {
+public class AliexpressEntity {
     private String name;   //seoTitle
     private String price;  //minPrice
 
