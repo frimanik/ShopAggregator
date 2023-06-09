@@ -1,13 +1,20 @@
 package com.Nullton.ShopAgregator.AliexpressParser;
 
+import com.Nullton.ShopAgregator.Entity;
+import com.Nullton.ShopAgregator.FetchData;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AliexpressParser {
-    public Map<String, AliexpressEntity> Parse(String product,int quantity, String URL, int page) throws IOException {
+public class AliexpressParser implements FetchData {
+
+    @Override
+    public Map<String,Entity> Parse(String product, int quantity)  throws IOException {
+        String URL = "https://www.aliexpress.com";
         AliexpressHttpConnection connection = new AliexpressHttpConnection();
-        HashMap<String, AliexpressEntity> products = new HashMap<>();
+        HashMap<String, Entity> products = new HashMap<>();
+        int page=0;
         while (products.size() < quantity) {
             page++;
             String content = connection.fetchData(URL,product);
@@ -28,7 +35,7 @@ public class AliexpressParser {
             URL = URL.replace("page=" + (page - 1), "page=" + page);
         }
         int counter = 1;
-        for (Map.Entry<String, AliexpressEntity> res : products.entrySet()) {
+        for (Map.Entry<String, Entity> res : products.entrySet()) {
             System.out.println(counter + ":" + res.getKey() + " " + res.getValue().getPrice());
             counter++;
         }

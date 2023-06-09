@@ -1,9 +1,11 @@
 package com.Nullton.ShopAgregator;
 
-import com.Nullton.ShopAgregator.AliexpressParser.AliexpressEntity;
 import com.Nullton.ShopAgregator.AliexpressParser.AliexpressParser;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class ShopAgregator {
@@ -12,8 +14,14 @@ public class ShopAgregator {
      shopAgregator.searchCheapest("fridge",1);
     }
 
-    private Map<String, AliexpressEntity> searchCheapest(String product, int quantity) throws IOException {
-        AliexpressParser aliexpressParser = new AliexpressParser();
-        return aliexpressParser.Parse(product,quantity,"https://www.aliexpress.com",0);
+    private Map<String, Entity> searchCheapest(String product, int quantity) throws IOException {
+        List<FetchData>fetchData = new LinkedList<>();
+        Map<String,Entity>assumedResult = new HashMap<>();
+        fetchData.add(new AliexpressParser());
+        for (FetchData data:fetchData){
+           assumedResult = data.Parse(product,quantity);
+        }
+        //assumedResult.someKindOfSort;
+        return assumedResult;
     }
 }

@@ -1,22 +1,7 @@
 package com.Nullton.ShopAgregator.AliexpressParser;
 
-public class AliexpressEntity {
-    private String name;   //seoTitle
-    private String price;  //minPrice
+import com.Nullton.ShopAgregator.Entity;
+import org.springframework.stereotype.Component;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-}
+@Component
+public class AliexpressEntity extends Entity {}
