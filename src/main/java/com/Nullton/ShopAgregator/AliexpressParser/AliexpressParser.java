@@ -2,6 +2,7 @@ package com.Nullton.ShopAgregator.AliexpressParser;
 
 import com.Nullton.ShopAgregator.Entity;
 import com.Nullton.ShopAgregator.FetchData;
+import com.Nullton.ShopAgregator.ShopProvider;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ public class AliexpressParser implements FetchData {
 
     @Override
     public Map<String,Entity> Parse(String product, int quantity)  throws IOException {
+        ShopProvider.Add(new AliexpressParser());
         String URL = "https://www.aliexpress.com";
         AliexpressHttpConnection connection = new AliexpressHttpConnection();
         HashMap<String, Entity> products = new HashMap<>();
@@ -40,6 +42,5 @@ public class AliexpressParser implements FetchData {
             counter++;
         }
         return products;
-
     }
 }

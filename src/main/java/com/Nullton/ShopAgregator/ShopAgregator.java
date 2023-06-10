@@ -15,11 +15,10 @@ public class ShopAgregator {
     }
 
     private Map<String, Entity> searchCheapest(String product, int quantity) throws IOException {
-        List<FetchData>fetchData = new LinkedList<>();
+
         Map<String,Entity>assumedResult = new HashMap<>();
-        fetchData.add(new AliexpressParser());
-        for (FetchData data:fetchData){
-           assumedResult = data.Parse(product,quantity);
+        for (FetchData shop:ShopProvider.provider){
+          assumedResult =  shop.Parse(product,quantity);
         }
         //assumedResult.someKindOfSort;
         return assumedResult;
