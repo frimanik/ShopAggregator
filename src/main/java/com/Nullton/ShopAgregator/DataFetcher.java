@@ -1,8 +1,9 @@
 package com.Nullton.ShopAgregator;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
+
 
 public interface DataFetcher {
-    Map<String, ProductEntity> Fetch(String product, int quantity) throws IOException;
+    List<ProductEntity> Fetch(String product, int quantity) throws IOException;
 }

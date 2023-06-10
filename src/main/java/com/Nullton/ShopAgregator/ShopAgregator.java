@@ -1,8 +1,7 @@
 package com.Nullton.ShopAgregator;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ShopAgregator {
     private ShopProvider provider;
@@ -11,10 +10,10 @@ public class ShopAgregator {
         this.provider = provider;
     }
 
-    public Map<String, ProductEntity> searchCheapest(String product, int quantity) throws IOException {
-        Map<String, ProductEntity> assumedResult = new HashMap<>();
+    public List<ProductEntity> searchCheapest(String product, int quantity) throws IOException {
+       List<ProductEntity> assumedResult = new ArrayList<>();
         for (DataFetcher shop : provider.providerList) {
-            assumedResult = shop.Fetch(product, quantity);
+            assumedResult=shop.Fetch(product, quantity);
         }
         //assumedResult.someKindOfSort;
         return assumedResult;
