@@ -1,4 +1,4 @@
-package com.Nullton.ShopAgregator;
+package com.Nullton.ShopAggregator;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(ShopAgregatorApplication.class);
+		return application.sources(ShopAggregatorApplication.class);
 	}
 
 }

@@ -1,12 +1,12 @@
-package com.Nullton.ShopAgregator;
+package com.Nullton.ShopAggregator;
 
 import java.io.IOException;
 import java.util.*;
 
-public class ShopAgregator {
+public class ShopAggregator {
     private ShopProvider provider;
 
-    public ShopAgregator(ShopProvider provider) {
+    public ShopAggregator(ShopProvider provider) {
         this.provider = provider;
     }
 

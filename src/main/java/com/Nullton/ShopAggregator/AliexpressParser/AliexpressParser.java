@@ -1,7 +1,7 @@
-package com.Nullton.ShopAgregator.AliexpressParser;
+package com.Nullton.ShopAggregator.AliexpressParser;
 
-import com.Nullton.ShopAgregator.DataFetcher;
-import com.Nullton.ShopAgregator.ProductEntity;
+import com.Nullton.ShopAggregator.DataFetcher;
+import com.Nullton.ShopAggregator.ProductEntity;
 
 import java.io.IOException;
 import java.math.BigDecimal;

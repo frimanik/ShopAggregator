@@ -1,4 +1,4 @@
-package com.Nullton.ShopAgregator.AliexpressParser;
+package com.Nullton.ShopAggregator.AliexpressParser;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;

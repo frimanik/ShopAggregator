@@ -1,4 +1,4 @@
-package com.Nullton.ShopAgregator;
+package com.Nullton.ShopAggregator;
 
 import java.util.List;
 

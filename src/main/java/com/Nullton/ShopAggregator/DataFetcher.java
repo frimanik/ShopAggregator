@@ -1,4 +1,4 @@
-package com.Nullton.ShopAgregator;
+package com.Nullton.ShopAggregator;
 
 import java.io.IOException;
 import java.util.List;
