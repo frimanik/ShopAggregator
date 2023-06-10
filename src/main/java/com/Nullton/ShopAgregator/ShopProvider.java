@@ -1,12 +1,15 @@
 package com.Nullton.ShopAgregator;
 
 import java.util.List;
-import java.util.Map;
 
 public class ShopProvider {
-   static List<FetchData> provider;
+    List<DataFetcher> providerList;
 
-    static public void Add(FetchData entity){
-       provider.add(entity);
+    public ShopProvider(List<DataFetcher> providerList) {
+        this.providerList = providerList;
+    }
+
+    public void Add(DataFetcher entity){
+       providerList.add(entity);
     }
 }

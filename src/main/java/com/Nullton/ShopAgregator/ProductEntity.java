@@ -1,6 +1,6 @@
 package com.Nullton.ShopAgregator;
 
-public abstract class Entity {
+public abstract class ProductEntity {
     public String name;
     public String price;
 

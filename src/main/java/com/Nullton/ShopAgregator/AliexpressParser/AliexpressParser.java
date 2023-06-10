@@ -1,21 +1,19 @@
 package com.Nullton.ShopAgregator.AliexpressParser;
 
-import com.Nullton.ShopAgregator.Entity;
-import com.Nullton.ShopAgregator.FetchData;
-import com.Nullton.ShopAgregator.ShopProvider;
+import com.Nullton.ShopAgregator.ProductEntity;
+import com.Nullton.ShopAgregator.DataFetcher;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AliexpressParser implements FetchData {
+public class AliexpressParser implements DataFetcher {
 
     @Override
-    public Map<String,Entity> Parse(String product, int quantity)  throws IOException {
-        ShopProvider.Add(new AliexpressParser());
+    public Map<String, ProductEntity> Fetch(String product, int quantity)  throws IOException {
         String URL = "https://www.aliexpress.com";
         AliexpressHttpConnection connection = new AliexpressHttpConnection();
-        HashMap<String, Entity> products = new HashMap<>();
+        HashMap<String, ProductEntity> products = new HashMap<>();
         int page=0;
         while (products.size() < quantity) {
             page++;
@@ -26,7 +24,7 @@ public class AliexpressParser implements FetchData {
 
             for (int i = 0; i < split.length; i++) {
                 if (split[i].equals("seoTitle")) {
-                    products.put(split[i + 3], new AliexpressEntity());
+                    products.put(split[i + 3], new AliexpressProductEntity());
                     temp = split[i + 3];
                 }
                 if (split[i].equals("minPrice")) {
@@ -37,7 +35,7 @@ public class AliexpressParser implements FetchData {
             URL = URL.replace("page=" + (page - 1), "page=" + page);
         }
         int counter = 1;
-        for (Map.Entry<String, Entity> res : products.entrySet()) {
+        for (Map.Entry<String, ProductEntity> res : products.entrySet()) {
             System.out.println(counter + ":" + res.getKey() + " " + res.getValue().getPrice());
             counter++;
         }
