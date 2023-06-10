@@ -13,9 +13,13 @@ public class ShopAgregator {
     public List<ProductEntity> searchCheapest(String product, int quantity) throws IOException {
        List<ProductEntity> assumedResult = new ArrayList<>();
         for (DataFetcher shop : provider.providerList) {
-            assumedResult=shop.Fetch(product, quantity);
+            assumedResult.addAll(shop.Fetch(product, quantity));
         }
-        //assumedResult.someKindOfSort;
+
+        assumedResult.sort(Comparator.comparing(ProductEntity::getPrice));
+        for (ProductEntity pr : assumedResult){
+            System.out.println(pr.getTitle()+":"+pr.getPrice());
+        }
         return assumedResult;
     }
 }

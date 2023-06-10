@@ -11,7 +11,7 @@ public class AliexpressHttpConnection {
         WebClient webClient = new WebClient(BrowserVersion.FIREFOX);
         webClient.getOptions().setJavaScriptEnabled(true);
         webClient.getOptions().setThrowExceptionOnScriptError(false);
-        String content = webClient.getPage(URL+"/w/wholesale-"+product+".html").getWebResponse().getContentAsString();
+        String content = webClient.getPage(URL+"/w/wholesale-"+product+".html?&sortType=price_asc").getWebResponse().getContentAsString();
         webClient.close();
         return content;
     }

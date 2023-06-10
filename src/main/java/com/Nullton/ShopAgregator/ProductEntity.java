@@ -1,45 +1,48 @@
 package com.Nullton.ShopAgregator;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
 public abstract class ProductEntity {
-    public Long id;
+    public UUID id;
 
-    public String imgHref;
+    public String imgUrl;
 
-    public String name;
+    public String title;
 
-    public String price;
+    public BigDecimal price;
 
     public String shop;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId() {
+       this.id = UUID.randomUUID();
     }
 
-    public String getImgHref() {
-        return imgHref;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImgHref(String imgHref) {
-        this.imgHref = imgHref;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
