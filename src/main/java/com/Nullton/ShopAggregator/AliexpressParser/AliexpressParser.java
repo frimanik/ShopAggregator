@@ -12,13 +12,13 @@ public class AliexpressParser implements DataFetcher {
 
     @Override
     public List<ProductEntity> Fetch(String product, int quantity) throws IOException {
-        String URL = "https://www.aliexpress.com";
+        String URL = "https://www.aliexpress.com/w/wholesale-"+product+".html?&sortType=price_asc";
         AliexpressHttpConnection connection = new AliexpressHttpConnection();
         HashMap<String, ProductEntity> products = new HashMap<>();
         int page = 0;
         while (products.size() < quantity) {
             page++;
-            String content = connection.fetchData(URL, product);
+            String content = connection.LoadContent(URL);
             String script = content.substring(content.indexOf("dida_config"), content.lastIndexOf("dida_config"));
             String[] split = script.split("[,:\"]");
             String temp = "";
@@ -40,6 +40,6 @@ public class AliexpressParser implements DataFetcher {
             URL = URL.replace("page=" + (page - 1), "page=" + page);
         }
 
-        return products.values().stream().toList();
+        return products.values().stream().filter(productEntity -> productEntity.price!=null).toList();
     }
 }
