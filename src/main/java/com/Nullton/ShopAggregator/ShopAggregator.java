@@ -18,7 +18,7 @@ public class ShopAggregator {
 
         assumedResult.sort(Comparator.comparing(ProductEntity::getPrice));
         for (ProductEntity pr : assumedResult){
-            System.out.println(pr.getTitle()+":"+pr.getPrice());
+            System.out.println(pr.getTitle()+":"+pr.getPrice()+pr.getShop().toUpperCase());
         }
         return assumedResult;
     }
