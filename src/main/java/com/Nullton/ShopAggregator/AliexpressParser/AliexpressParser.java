@@ -18,7 +18,7 @@ public class AliexpressParser implements DataFetcher {
         int page = 0;
         while (products.size() < quantity) {
             page++;
-            String content = connection.LoadContent(URL);
+            String content = connection.configureConnection(URL);
             String script = content.substring(content.indexOf("dida_config"), content.lastIndexOf("dida_config"));
             String[] split = script.split("[,:\"]");
             String temp = "";

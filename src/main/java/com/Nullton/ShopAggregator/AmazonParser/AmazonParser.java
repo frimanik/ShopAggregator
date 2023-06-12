@@ -15,7 +15,7 @@ public class AmazonParser implements DataFetcher {
         AmazonHttpConnection connection = new AmazonHttpConnection();
         HashMap<String, ProductEntity> products = new HashMap<>();
 
-        String content = connection.LoadContent(URL);
+        String content = connection.configureConnection(URL);
         int id1 = content.indexOf("img class=\"s-image\"");
         int id2 = content.lastIndexOf("img class=\"s-image\"");
         String script = content.substring(id1, id2);

@@ -6,7 +6,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import java.io.IOException;
 
 public abstract class HttpConnection {
-    protected WebClient webClient;
+
     protected String configureConnection(String URL) throws IOException {
         WebClient webClient = new WebClient(BrowserVersion.FIREFOX);
         webClient.getOptions().setJavaScriptEnabled(true);
@@ -15,5 +15,4 @@ public abstract class HttpConnection {
         webClient.close();
         return content;
     }
-    protected abstract String LoadContent(String URL) throws IOException;
 }
