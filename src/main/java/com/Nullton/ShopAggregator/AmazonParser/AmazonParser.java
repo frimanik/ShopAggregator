@@ -19,7 +19,6 @@ public class AmazonParser implements DataFetcher {
         int id1 = content.indexOf("img class=\"s-image\"");
         int id2 = content.lastIndexOf("img class=\"s-image\"");
         String script = content.substring(id1, id2);
-        // String[]split = script.split("[=<>,:\"]");
         String[] split = script.split("<span class=\"a-offscreen\">|<span class=\"a-size-medium a-color-base a-text-normal\">|</span>|img class=\"s-image\" src=\"|srcset=");
         String temp = "";
 
