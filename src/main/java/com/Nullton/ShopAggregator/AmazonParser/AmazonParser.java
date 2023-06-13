@@ -13,10 +13,10 @@ public class AmazonParser implements DataFetcher {
     public List<ProductEntity> Fetch(String product, int quantity) throws IOException {
         int page = 1;
         HashMap<String, ProductEntity> products = new HashMap<>();
+        AmazonHttpConnection connection = new AmazonHttpConnection();
         while (products.size() < quantity) {
             String URL = "https://amazon.com/s?k=" + product + "&s=price-asc-rank&page=" + page++;
-            AmazonHttpConnection connection = new AmazonHttpConnection();
-            String content = connection.configureConnection(URL);
+            String content = connection.loadProducts(URL);
             int id1 = content.indexOf("img class=\"s-image\"");
             int id2 = content.lastIndexOf("img class=\"s-image\"");
             String script = content.substring(id1, id2);

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class AmazonHttpConnection extends HttpConnection {
     @Override
-    protected String configureConnection(String URL) throws IOException {
-        return super.configureConnection(URL);
+    protected String loadProducts(String URL) throws IOException {
+        return super.loadProducts(URL);
     }
 }

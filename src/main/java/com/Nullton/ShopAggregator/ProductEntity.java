@@ -14,6 +14,8 @@ public abstract class ProductEntity {
 
     public String shop;
 
+    public String Currency;
+
     public UUID getId() {
         return id;
     }
@@ -52,5 +54,13 @@ public abstract class ProductEntity {
 
     public void setShop(String shop) {
         this.shop = shop;
+    }
+
+    public String getCurrency() {
+        return Currency;
+    }
+
+    public void setCurrency(String currency) {
+        Currency = currency;
     }
 }

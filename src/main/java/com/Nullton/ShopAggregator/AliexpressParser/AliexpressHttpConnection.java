@@ -7,7 +7,7 @@ import java.io.IOException;
 public class AliexpressHttpConnection  extends HttpConnection {
 
     @Override
-    public String configureConnection(String URL) throws IOException {
-        return super.configureConnection(URL);
+    public String loadProducts(String URL) throws IOException {
+        return super.loadProducts(URL);
     }
 }

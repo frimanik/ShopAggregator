@@ -5,14 +5,20 @@ import com.gargoylesoftware.htmlunit.WebClient;
 
 import java.io.IOException;
 
-public abstract class HttpConnection {
-
-    protected String configureConnection(String URL) throws IOException {
-        WebClient webClient = new WebClient(BrowserVersion.FIREFOX);
+public  class HttpConnection {
+static WebClient webClient;
+   static public void openConnection(){
+        webClient = new WebClient(BrowserVersion.FIREFOX);
         webClient.getOptions().setJavaScriptEnabled(true);
         webClient.getOptions().setThrowExceptionOnScriptError(false);
-        String content = webClient.getPage(URL).getWebResponse().getContentAsString();
+    }
+
+   static public void closeConnection(){
         webClient.close();
+    }
+
+    protected String loadProducts(String URL) throws IOException {
+        String content = webClient.getPage(URL).getWebResponse().getContentAsString();
         return content;
     }
 }
