@@ -22,7 +22,7 @@ public class AmazonParser implements DataFetcher {
             String script = content.substring(id1, id2);
             String[] split = script.split("<span class=\"a-offscreen\">|<span class=\"a-size-medium a-color-base a-text-normal\">|</span>|img class=\"s-image\" src=\"|srcset=");
             String temp = "";
-
+            String currency ="USD";
             for (int i = 0; i < split.length; i++) {
                 if (split[i].endsWith("jpg\" ")) {
                     split[i] = split[i].substring(0, split[i].length() - 2);
@@ -40,6 +40,7 @@ public class AmazonParser implements DataFetcher {
                         e.getMessage();
                     }
                 if (split[i].startsWith("$")) {
+                    products.get(temp).setCurrency(currency);
                     products.get(temp).setPrice(BigDecimal.valueOf(Double.parseDouble(split[i].substring(1, split[i].length() - 1))));
                 }
             }

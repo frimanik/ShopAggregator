@@ -22,11 +22,9 @@ public class AliexpressParser implements DataFetcher {
             String script = content.substring(content.indexOf("dida_config"), content.lastIndexOf("dida_config"));
             String[] split = script.split("[,:\"]");
             String temp = "";
-            String currency ="";
+            String currency =script.substring(script.indexOf("currencySymbol"),script.indexOf("currencySymbol")+30);
+            currency = currency.substring(currency.indexOf(":")+2,currency.indexOf(",")-1);
             for (int i = 0; i < split.length; i++) {
-                if (split[i].equals("currencySymbol")){
-                    currency=split[i+3];
-                }
                 if (split[i].equals("imgUrl")) {
                     products.put(split[i + 3], new AliexpressProductEntity());
                     temp = split[i + 3];
@@ -39,7 +37,7 @@ public class AliexpressParser implements DataFetcher {
                 }
                 if (split[i].equals("minPrice")) {
                     products.get(temp).setCurrency(currency);
-                    products.get(temp).setPrice(BigDecimal.valueOf(Double.parseDouble(split[i + 2])).multiply(CurrencyExchangeRateProvider.phpToDollar));
+                    products.get(temp).setPrice(BigDecimal.valueOf(Double.parseDouble(split[i + 2])));
                 }
             }
         }
