@@ -1,4 +1,4 @@
-package com.Nullton.ShopAggregator.AliexpressParser;
+ package com.Nullton.ShopAggregator.AliexpressParser;
 
 import com.Nullton.ShopAggregator.CurrencyExchangeRateProvider;
 import com.Nullton.ShopAggregator.DataFetcher;
@@ -17,12 +17,16 @@ public class AliexpressParser implements DataFetcher {
         HashMap<String, ProductEntity> products = new HashMap<>();
         int page = 1;
         while (products.size() < quantity) {
-            String URL = "https://www.aliexpress.com/w/wholesale-"+product+".html?&sortType=price_asc&page="+page++;
+            String URL = "https://www.aliexpress.com/w/wholesale-" + product + ".html?&sortType=price_asc&page=" + page++;
             String content = connection.loadProducts(URL);
             String script = content.substring(content.indexOf("dida_config"), content.lastIndexOf("dida_config"));
             String[] split = script.split("[,:\"]");
             String temp = "";
+            String currency ="";
             for (int i = 0; i < split.length; i++) {
+                if (split[i].equals("currencySymbol")){
+                    currency=split[i+3];
+                }
                 if (split[i].equals("imgUrl")) {
                     products.put(split[i + 3], new AliexpressProductEntity());
                     temp = split[i + 3];
@@ -34,10 +38,11 @@ public class AliexpressParser implements DataFetcher {
                     products.get(temp).setTitle(split[i + 3]);
                 }
                 if (split[i].equals("minPrice")) {
+                    products.get(temp).setCurrency(currency);
                     products.get(temp).setPrice(BigDecimal.valueOf(Double.parseDouble(split[i + 2])).multiply(CurrencyExchangeRateProvider.phpToDollar));
                 }
             }
         }
-        return products.values().stream().filter(productEntity -> productEntity.price!=null).toList();
+        return products.values().stream().filter(productEntity -> productEntity.price != null).toList();
     }
 }
