@@ -2,10 +2,10 @@ package com.Nullton.ShopAggregator;
 
 import com.Nullton.ShopAggregator.AliexpressParser.AliexpressParser;
 import com.Nullton.ShopAggregator.AmazonParser.AmazonParser;
+import com.Nullton.ShopAggregator.LazadaParser.LazadaParser;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 @SpringBootApplication
 public class ShopAggregatorApplication {
@@ -17,6 +17,7 @@ public class ShopAggregatorApplication {
         ShopProvider provider = new ShopProvider();
         provider.Add(new AliexpressParser());
         provider.Add(new AmazonParser());
+//  provider.Add(new LazadaParser());
         ShopAggregator shopAggregator = new ShopAggregator(provider, exchangeRateService);
         shopAggregator.searchCheapest("EUR","lamp",1);
         HttpConnection.closeConnection();

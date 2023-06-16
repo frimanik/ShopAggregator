@@ -23,14 +23,14 @@ public class ShopAggregator {
 
         for (ProductEntity pr : assumedResult) {
             if (!curToUsd.containsKey(pr.getCurrency())) {
-                    curToUsd.put(pr.getCurrency(), exchangeRateService.getExhangeRate(pr.getCurrency(),toCurrency));
+                curToUsd.put(pr.getCurrency(), exchangeRateService.getExhangeRate(pr.getCurrency(), toCurrency));
             }
-                pr.setNotionalPrice(curToUsd.get(pr.getCurrency()).multiply(pr.getPrice()));
+            pr.setNotionalPrice(curToUsd.get(pr.getCurrency()).multiply(pr.getPrice()));
         }
 
         assumedResult.sort(Comparator.comparing(ProductEntity::getNotionalPrice));
         for (ProductEntity pr : assumedResult) {
-            System.out.println(pr.getTitle() + ":" + pr.getNotionalPrice() + pr.getShop().toUpperCase());
+            System.out.println(pr.getTitle() + ":" + pr.getNotionalPrice() + toCurrency + pr.getShop().toUpperCase());
         }
 
         return assumedResult;
