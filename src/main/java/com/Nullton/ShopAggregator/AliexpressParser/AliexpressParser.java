@@ -1,6 +1,5 @@
  package com.Nullton.ShopAggregator.AliexpressParser;
 
-import com.Nullton.ShopAggregator.CurrencyExchangeRateProvider;
 import com.Nullton.ShopAggregator.DataFetcher;
 import com.Nullton.ShopAggregator.ProductEntity;
 

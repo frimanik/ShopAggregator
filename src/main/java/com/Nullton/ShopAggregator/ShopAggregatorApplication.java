@@ -13,11 +13,11 @@ public class ShopAggregatorApplication {
     public static void main(String[] args) throws IOException {
 //		SpringApplication.run(ShopAggregatorApplication.class, args);
         HttpConnection.openConnection();
-        CurrencyExchangeRateProvider.computeCurrencyToDollar("PHP");
-        ShopProvider provider = new ShopProvider(new LinkedList<>());
+        CurrencyExchangeRateService exchangeRateService = new CurrencyExchangeRateService();
+        ShopProvider provider = new ShopProvider();
         provider.Add(new AliexpressParser());
         provider.Add(new AmazonParser());
-        ShopAggregator shopAggregator = new ShopAggregator(provider);
+        ShopAggregator shopAggregator = new ShopAggregator(provider, exchangeRateService);
         shopAggregator.searchCheapest("lamp",1);
         HttpConnection.closeConnection();
     }

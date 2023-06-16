@@ -12,9 +12,11 @@ public abstract class ProductEntity {
 
     public BigDecimal price;
 
+    public BigDecimal notionalPrice;
+
     public String shop;
 
-    public String Currency;
+    public String currency;
 
     public UUID getId() {
         return id;
@@ -57,10 +59,18 @@ public abstract class ProductEntity {
     }
 
     public String getCurrency() {
-        return Currency;
+        return currency;
     }
 
     public void setCurrency(String currency) {
-        Currency = currency;
+        this.currency = currency;
+    }
+
+    public BigDecimal getNotionalPrice() {
+        return notionalPrice;
+    }
+
+    public void setNotionalPrice(BigDecimal notionalPrice) {
+        this.notionalPrice = notionalPrice;
     }
 }
