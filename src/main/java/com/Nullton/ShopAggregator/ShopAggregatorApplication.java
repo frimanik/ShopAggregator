@@ -18,7 +18,7 @@ public class ShopAggregatorApplication {
         provider.Add(new AliexpressParser());
         provider.Add(new AmazonParser());
         ShopAggregator shopAggregator = new ShopAggregator(provider, exchangeRateService);
-        shopAggregator.searchCheapest("lamp",1);
+        shopAggregator.searchCheapest("EUR","lamp",1);
         HttpConnection.closeConnection();
     }
 }

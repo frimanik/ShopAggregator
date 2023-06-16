@@ -13,7 +13,7 @@ public class ShopAggregator {
         this.exchangeRateService = exchangeRateService;
     }
 
-    public List<ProductEntity> searchCheapest(String product, int quantity) throws IOException {
+    public List<ProductEntity> searchCheapest(String toCurrency, String product, int quantity) throws IOException {
         HashMap<String, BigDecimal> curToUsd = new HashMap<>();
         List<ProductEntity> assumedResult = new ArrayList<>();
 
@@ -22,18 +22,17 @@ public class ShopAggregator {
         }
 
         for (ProductEntity pr : assumedResult) {
-            {
-                if (!curToUsd.containsKey(pr.getCurrency())) {
-                    curToUsd.put(pr.getCurrency(), exchangeRateService.computeCurrencyToDollar(pr.getCurrency()));}
-                pr.setNotionalPrice(curToUsd.get(pr.getCurrency()).multiply(pr.getPrice()));
+            if (!curToUsd.containsKey(pr.getCurrency())) {
+                    curToUsd.put(pr.getCurrency(), exchangeRateService.getExhangeRate(pr.getCurrency(),toCurrency));
             }
+                pr.setNotionalPrice(curToUsd.get(pr.getCurrency()).multiply(pr.getPrice()));
         }
 
         assumedResult.sort(Comparator.comparing(ProductEntity::getNotionalPrice));
         for (ProductEntity pr : assumedResult) {
             System.out.println(pr.getTitle() + ":" + pr.getNotionalPrice() + pr.getShop().toUpperCase());
         }
-        curToUsd.clear();
+
         return assumedResult;
     }
 }
