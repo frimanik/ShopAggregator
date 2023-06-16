@@ -16,6 +16,12 @@ public class ShopAggregator {
             assumedResult.addAll(shop.Fetch(product, quantity));
         }
 
+        for (ProductEntity pr:assumedResult){
+            if (!pr.getCurrency().equals("USD")){
+                pr.setPrice(CurrencyExchangeRateProvider.curToUsd.get(pr.getCurrency()).multiply(pr.getPrice()));
+            }
+        }
+
         assumedResult.sort(Comparator.comparing(ProductEntity::getPrice));
         for (ProductEntity pr : assumedResult){
             System.out.println(pr.getTitle()+":"+pr.getPrice()+pr.getShop().toUpperCase());
