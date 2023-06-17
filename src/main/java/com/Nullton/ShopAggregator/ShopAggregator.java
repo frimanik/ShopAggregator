@@ -1,13 +1,17 @@
 package com.Nullton.ShopAggregator;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
-
+@Service
 public class ShopAggregator {
     private final ShopProvider provider;
     private final CurrencyExchangeRateService exchangeRateService;
 
+    @Autowired
     public ShopAggregator(ShopProvider provider, CurrencyExchangeRateService exchangeRateService) {
         this.provider = provider;
         this.exchangeRateService = exchangeRateService;

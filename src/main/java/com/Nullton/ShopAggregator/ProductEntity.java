@@ -1,8 +1,10 @@
 package com.Nullton.ShopAggregator;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.UUID;
-
+@Component
 public abstract class ProductEntity {
     public UUID id;
 

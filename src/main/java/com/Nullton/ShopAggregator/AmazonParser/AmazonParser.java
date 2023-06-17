@@ -2,18 +2,22 @@ package com.Nullton.ShopAggregator.AmazonParser;
 
 import com.Nullton.ShopAggregator.DataFetcher;
 import com.Nullton.ShopAggregator.ProductEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
+@Service
 public class AmazonParser implements DataFetcher {
+    @Autowired
+    AmazonHttpConnection connection;
     @Override
     public List<ProductEntity> Fetch(String product, int quantity) throws IOException {
         int page = 1;
         HashMap<String, ProductEntity> products = new HashMap<>();
-        AmazonHttpConnection connection = new AmazonHttpConnection();
         while (products.size() < quantity) {
             String URL = "https://amazon.com/s?k=" + product + "&s=price-asc-rank&page=" + page++;
             String content = connection.loadProducts(URL);

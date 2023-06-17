@@ -2,9 +2,10 @@ package com.Nullton.ShopAggregator;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
+@Service
 public  class HttpConnection {
 static WebClient webClient;
    static public void openConnection(){

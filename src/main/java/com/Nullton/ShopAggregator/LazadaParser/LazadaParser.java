@@ -9,6 +9,8 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -16,15 +18,16 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@Service
 public class LazadaParser implements DataFetcher {
+    @Autowired
+    LazadaHttpConnection connection;
     @Override
     public List<ProductEntity> Fetch(String product, int quantity) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         int page = 1;
         boolean firstRequest = true;
         HashMap<String, ProductEntity> products = new HashMap<>();
-        LazadaHttpConnection connection = new LazadaHttpConnection();
         JsonFactory factory = new JsonFactory();
         while (products.size()<quantity) {
             String URL = "https://www.lazada.com.ph/tag/" + product + "/?ajax=true&isFirstRequest="+firstRequest+"&page=" + page++ + "&q=" + product + "&sort=priceasc";

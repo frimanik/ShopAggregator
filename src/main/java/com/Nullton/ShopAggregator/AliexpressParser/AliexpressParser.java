@@ -2,17 +2,20 @@
 
 import com.Nullton.ShopAggregator.DataFetcher;
 import com.Nullton.ShopAggregator.ProductEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
+@Service
 public class AliexpressParser implements DataFetcher {
-
+    @Autowired
+    AliexpressHttpConnection connection;
     @Override
     public List<ProductEntity> Fetch(String product, int quantity) throws IOException {
-        AliexpressHttpConnection connection = new AliexpressHttpConnection();
         HashMap<String, ProductEntity> products = new HashMap<>();
         int page = 1;
         while (products.size() < quantity) {

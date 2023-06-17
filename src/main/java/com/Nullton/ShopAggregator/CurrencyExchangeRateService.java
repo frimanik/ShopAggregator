@@ -2,11 +2,12 @@ package com.Nullton.ShopAggregator;
 
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
-
+@Service
 public class CurrencyExchangeRateService {
 
     public BigDecimal getExhangeRate(String fromCurrency, String toCurrency) throws IOException {
