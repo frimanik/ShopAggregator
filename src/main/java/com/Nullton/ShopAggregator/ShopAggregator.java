@@ -14,6 +14,8 @@ import java.util.List;
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ShopAggregator {
+
+    @Autowired HttpConnection httpConnection;
     private final ShopProvider provider;
     private final CurrencyExchangeRateService exchangeRateService;
 
@@ -42,7 +44,7 @@ public class ShopAggregator {
         for (ProductEntity pr : assumedResult) {
             System.out.println(pr.getTitle() + ":" + pr.getNotionalPrice() + toCurrency + pr.getShop().toUpperCase());
         }
-
+        httpConnection.closeConnection();
         return assumedResult;
     }
 }

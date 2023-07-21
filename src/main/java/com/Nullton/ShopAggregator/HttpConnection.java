@@ -2,19 +2,22 @@ package com.Nullton.ShopAggregator;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 @Service
-public  class HttpConnection {
-static WebClient webClient;
-   static public void openConnection(){
-        webClient = new WebClient(BrowserVersion.FIREFOX);
-        webClient.getOptions().setJavaScriptEnabled(true);
-        webClient.getOptions().setThrowExceptionOnScriptError(false);
-    }
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+public class HttpConnection {
+    WebClient webClient;
 
-   static public void closeConnection(){
+public HttpConnection(){
+    webClient = new WebClient(BrowserVersion.FIREFOX);
+    webClient.getOptions().setJavaScriptEnabled(true);
+    webClient.getOptions().setThrowExceptionOnScriptError(false);
+}
+    public void closeConnection(){
         webClient.close();
     }
 

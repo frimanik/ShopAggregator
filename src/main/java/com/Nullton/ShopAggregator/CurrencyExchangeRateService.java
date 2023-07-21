@@ -2,6 +2,7 @@ package com.Nullton.ShopAggregator;
 
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -9,10 +10,11 @@ import java.math.BigDecimal;
 import java.util.List;
 @Service
 public class CurrencyExchangeRateService {
-
+@Autowired
+HttpConnection httpConnection;
     public BigDecimal getExhangeRate(String fromCurrency, String toCurrency) throws IOException {
         if (fromCurrency.equals(toCurrency)) return BigDecimal.valueOf(1);
-        HtmlPage t = HttpConnection.webClient.getPage("https://www.xe.com/currencyconverter/convert/?Amount=1&From=" + fromCurrency + "&To="+toCurrency);
+        HtmlPage t = httpConnection.webClient.getPage("https://www.xe.com/currencyconverter/convert/?Amount=1&From=" + fromCurrency + "&To="+toCurrency);
         List<DomNode> els = t.querySelectorAll("[class*=\"result__BigRate\"]");
         for (DomNode el : els) {
             System.out.println(el.getTextContent());
